@@ -112,7 +112,17 @@
             let original_canvas = 0;
             
             window.onload = function() {
-                Dos(document.getElementById("jsdos")).run("wordlos.jsdos");
+                const dos = Dos(document.getElementById("jsdos"));
+                console.dir(dos);
+                dos.options.style = "hidden";
+                dos.storage.setItem("ui.tipsV2", "false");
+                dos.storage.setItem("ui.autolockTipsV2", "false");
+                
+                dos.run("wordlos.jsdos");
+                setTimeout(function() {
+                    console.log("Now!");
+                    dos.resume();
+                }, 1000);
                 const img = original_canvas = document.getElementsByClassName("emulator-canvas")[0];
                 img.width = 640;
                 img.height = 400;
